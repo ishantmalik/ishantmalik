@@ -1,0 +1,12 @@
+You have deployed an application, that is listening at port 8000. You used a replica-set to deploy it and created a NodePort service to make it accessible. But when you test it, somehow the application is not reachable at the port. Write down your approach and sequentially all the steps that you will take to find out the issue.
+Answer:
+Check the NodePort that was assigned to the service.
+kubectl get service -o wide
+This will show you the NodePort that was assigned to the service, as well as the IP address of the node that is hosting the service. 
+Check the firewall rules on the node that is hosting the service. Make sure that the firewall is not blocking traffic on the NodePort that was assigned to the service.
+Check the application logs to see if there are any errors that are being reported. These errors may provide clues as to why the application is not reachable.
+Restart the application pods. This may resolve any temporary issues that are preventing the application from being reachable. 
+Here are some additional tips for troubleshooting NodePort services:
+It is important to have a good understanding of how NodePort services work in Kubernetes. 
+This will help you to troubleshoot issues more effectively. 
+If you are using a cloud-based Kubernetes service, such as Google Kubernetes Engine, you may be able to use the cloud provider's console or API to troubleshoot the issue.
