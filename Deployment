@@ -1,0 +1,31 @@
+Suppose you have deployed your application using a deployment controller. Assume the initial number of replicas is one. Write the steps needed to update a container's image using deployment, making sure that there is zero downtime.
+Answer:
+Kindly Update the image name in the deployment manifest.
+Run the below command to update the deployment
+kubectl apply -f deployment.yaml
+it will create new pods with the new image and then  replace the old pods with the new ones.
+update complete 
+all of the pods will be running the new image.
+Example of a deployment manifest:
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+name: my-app 
+spec: 
+  replicas: 1 
+selector: 
+  matchLabels: 
+  app: my-app 
+ template: 
+   metadata: 
+ labels: 
+   app: my-app 
+  spec: 
+    containers: 
+    - name: my-app 
+      image: my-app:latest
+
+The deployment is named my-app and it has a single replica. 
+The container in the pod is named my-app and it has the image my-app:latest.
+To update the image, you would simply change the image name in the deployment manifest to the new image name.
+For example, to update the image to my-app:1.2.3, you would change the line in the manifest that says image: my-app:latest to image: my-app:1.2.3.
